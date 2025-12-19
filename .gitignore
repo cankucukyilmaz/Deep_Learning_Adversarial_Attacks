@@ -1,0 +1,17 @@
+# Ignore the data directory
+data/raw/
+data/processed/
+data/external/
+
+# Ignore Python cache and environments
+__pycache__/
+venv/
+.env
+
+# Ignore large model checkpoints
+models/*.pth
+models/*.h5
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
