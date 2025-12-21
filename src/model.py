@@ -1,14 +1,19 @@
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 import torch
 import torch.nn as nn
 from torchvision import models
 
-def get_resnet_baseline(num_classes=1, pretrained=True):
-    # 1. Load the architecture with ImageNet weights
-    model = models.resnet18(weights='IMAGENET1K_V1' if pretrained else None)
+def get_celeba_resnet50(pretrained=True):
+    # Load ResNet-50 
+    weights = models.ResNet50_Weights.DEFAULT
+    model = models.resnet50(weights=weights)
     
-    # 2. Modify the final layer (Fully Connected)
-    # ResNet18's last layer is 'fc', originally for 1000 ImageNet classes
-    in_features = model.fc.in_features
-    model.fc = nn.Linear(in_features, num_classes) 
+    # ResNet-50 has 2048 input features at the final (fc) layer
+    num_ftrs = model.fc.in_features
+    
+    # Change the output to 40 for CelebA attributes
+    model.fc = nn.Linear(num_ftrs, 40)
     
     return model
