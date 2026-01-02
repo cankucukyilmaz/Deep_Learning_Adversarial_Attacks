@@ -42,6 +42,6 @@ def process_attributes(input_path, output_path):
 if __name__ == "__main__":
     # Adjust paths based on your screenshot structure
     INPUT_FILE = 'data/external/list_attr_celeba.txt'
-    OUTPUT_FILE = 'data/processed/celeba_attrs_clean.csv'
+    OUTPUT_FILE = 'data/processed/list_attr_celeba.csv'
     
     process_attributes(INPUT_FILE, OUTPUT_FILE)
